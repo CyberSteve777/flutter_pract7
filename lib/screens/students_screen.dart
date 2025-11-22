@@ -136,7 +136,7 @@ class _StudentsScreenState extends State<StudentsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: null,
+      appBar: AppBar(title: const Text('Студенты')),
       body: ListView.builder(
         padding: const EdgeInsets.all(16),
         itemCount: widget.dataService.students.length,

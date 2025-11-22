@@ -172,7 +172,7 @@ class _TeachersScreenState extends State<TeachersScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: null,
+      appBar: AppBar(title: const Text('Преподаватели')),
       body: ListView.builder(
         padding: const EdgeInsets.all(16),
         itemCount: widget.dataService.teachers.length,
