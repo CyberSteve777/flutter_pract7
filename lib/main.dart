@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'screens/home_screen.dart';
+import 'screens/auth_screen.dart';
 // Named routes removed; only HomeScreen is needed here.
 
 void main() {
@@ -26,7 +26,7 @@ class EducationalSystemApp extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      home: const HomeScreen(),
+      home: const AuthorizationScreen(),
     );
   }
 }
