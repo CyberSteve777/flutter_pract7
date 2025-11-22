@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'screens/auth_screen.dart';
 import 'screens/home_screen.dart';
-// Named routes removed; only HomeScreen is needed here.
+import 'screens/students_screen.dart';
+import 'screens/courses_screen.dart';
+import 'screens/teachers_screen.dart';
+import 'screens/grades_screen.dart';
+import 'services/data_service.dart';
 
 void main() {
   runApp(const EducationalSystemApp());
@@ -11,7 +17,39 @@ class EducationalSystemApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    final dataService = DataService();
+
+    final router = GoRouter(
+      initialLocation: '/login',
+      routes: [
+        GoRoute(
+          path: '/login',
+          builder: (context, state) => const AuthorizationScreen(),
+        ),
+        GoRoute(
+          path: '/',
+          builder: (context, state) => HomeScreen(dataService: dataService),
+        ),
+        GoRoute(
+          path: '/students',
+          builder: (context, state) => StudentsScreen(dataService: dataService),
+        ),
+        GoRoute(
+          path: '/courses',
+          builder: (context, state) => CoursesScreen(dataService: dataService),
+        ),
+        GoRoute(
+          path: '/teachers',
+          builder: (context, state) => TeachersScreen(dataService: dataService),
+        ),
+        GoRoute(
+          path: '/grades',
+          builder: (context, state) => GradesScreen(dataService: dataService),
+        ),
+      ],
+    );
+
+    return MaterialApp.router(
       title: 'Образовательная система',
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -19,14 +57,13 @@ class EducationalSystemApp extends StatelessWidget {
           backgroundColor: Colors.blue,
           foregroundColor: Colors.white,
         ),
-        // Remove cardTheme to avoid type mismatch across Flutter versions
         floatingActionButtonTheme: const FloatingActionButtonThemeData(
           backgroundColor: Colors.blue,
           foregroundColor: Colors.white,
         ),
       ),
       debugShowCheckedModeBanner: false,
-      home: const HomeScreen(),
+      routerConfig: router,
     );
   }
 }
