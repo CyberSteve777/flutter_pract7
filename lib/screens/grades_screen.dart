@@ -174,7 +174,7 @@ class _GradesScreenState extends State<GradesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: null,
+      appBar: AppBar(title: const Text('Оценки')),
       body: ListView.builder(
         padding: const EdgeInsets.all(16),
         itemCount: widget.dataService.grades.length,

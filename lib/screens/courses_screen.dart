@@ -4,14 +4,14 @@ import '../services/data_service.dart';
 import '../widgets/widgets.dart';
 
 class CoursesScreen extends StatefulWidget {
-  const CoursesScreen({super.key});
+  final DataService dataService;
+  const CoursesScreen({super.key, required this.dataService});
 
   @override
   State<CoursesScreen> createState() => _CoursesScreenState();
 }
 
 class _CoursesScreenState extends State<CoursesScreen> {
-  final DataService dataService = DataService();
 
   void _addCourse() {
     final nameController = TextEditingController();
@@ -62,7 +62,7 @@ class _CoursesScreenState extends State<CoursesScreen> {
                   teacherId: teacherIdController.text,
                 );
                 setState(() {
-                  dataService.addCourse(newCourse);
+                  widget.dataService.addCourse(newCourse);
                 });
                 Navigator.pop(context);
               }
@@ -100,7 +100,7 @@ class _CoursesScreenState extends State<CoursesScreen> {
             onPressed: () {
               if (studentIdController.text.isNotEmpty) {
                 setState(() {
-                  dataService.enrollStudentInCourse(
+                  widget.dataService.enrollStudentInCourse(
                     course.id,
                     studentIdController.text,
                   );
@@ -129,7 +129,7 @@ class _CoursesScreenState extends State<CoursesScreen> {
           TextButton(
             onPressed: () {
               setState(() {
-                dataService.deleteCourse(course.id);
+                widget.dataService.deleteCourse(course.id);
               });
               Navigator.pop(context);
             },
@@ -143,17 +143,17 @@ class _CoursesScreenState extends State<CoursesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: null,
+      appBar: AppBar(title: const Text('Курсы')),
       body: ListView.builder(
         padding: const EdgeInsets.all(16),
-        itemCount: dataService.courses.length,
+        itemCount: widget.dataService.courses.length,
         itemBuilder: (context, index) {
-          final course = dataService.courses[index];
+          final course = widget.dataService.courses[index];
           return Padding(
             padding: const EdgeInsets.only(bottom: 8),
             child: CourseCard(
               course: course,
-              teacher: dataService.teachers.firstWhere(
+              teacher: widget.dataService.teachers.firstWhere(
                 (t) => t.id == course.teacherId,
               ),
               onEnrollStudent: () => _enrollStudent(course),
