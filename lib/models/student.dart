@@ -3,12 +3,14 @@ class Student {
   final String name;
   final String email;
   final List<String> enrolledCourses;
+  final String? photoUrl;
 
   Student({
     required this.id,
     required this.name,
     required this.email,
     required this.enrolledCourses,
+    this.photoUrl,
   });
 
   Map<String, dynamic> toMap() {
@@ -17,6 +19,7 @@ class Student {
       'name': name,
       'email': email,
       'enrolledCourses': enrolledCourses,
+      'photoUrl': photoUrl,
     };
   }
 
@@ -26,6 +29,7 @@ class Student {
       name: map['name'],
       email: map['email'],
       enrolledCourses: List<String>.from(map['enrolledCourses'] ?? []),
+      photoUrl: map['photoUrl'],
     );
   }
 }

@@ -6,6 +6,7 @@ class Teacher {
   final String position;
   final String phoneNumber;
   final List<String> subjects;
+  final String? photoUrl;
 
   Teacher({
     required this.id,
@@ -15,6 +16,7 @@ class Teacher {
     required this.position,
     required this.phoneNumber,
     required this.subjects,
+    this.photoUrl,
   });
 
   Map<String, dynamic> toMap() {
@@ -26,6 +28,7 @@ class Teacher {
       'position': position,
       'phoneNumber': phoneNumber,
       'subjects': subjects,
+      'photoUrl': photoUrl,
     };
   }
 
@@ -38,6 +41,7 @@ class Teacher {
       position: map['position'],
       phoneNumber: map['phoneNumber'],
       subjects: List<String>.from(map['subjects'] ?? []),
+      photoUrl: map['photoUrl'],
     );
   }
 }
