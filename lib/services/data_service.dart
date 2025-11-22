@@ -25,6 +25,7 @@ class DataService {
         position: 'Профессор',
         phoneNumber: '+7-999-123-45-67',
         subjects: ['Математический анализ', 'Линейная алгебра'],
+        photoUrl: 'https://i.pravatar.cc/150?img=12',
       ),
       Teacher(
         id: '2',
@@ -34,6 +35,7 @@ class DataService {
         position: 'Доцент',
         phoneNumber: '+7-999-234-56-78',
         subjects: ['Программирование', 'Алгоритмы'],
+        photoUrl: 'https://i.pravatar.cc/150?img=32',
       ),
       Teacher(
         id: '3',
@@ -43,6 +45,7 @@ class DataService {
         position: 'Преподаватель',
         phoneNumber: '+7-999-345-67-89',
         subjects: ['Общая физика', 'Термодинамика'],
+        photoUrl: null,
       ),
     ];
 
@@ -52,24 +55,28 @@ class DataService {
         name: 'Александр Иванов',
         email: 'ivanov@student.edu',
         enrolledCourses: ['1', '2'],
+        photoUrl: 'https://i.pravatar.cc/150?img=5',
       ),
       Student(
         id: '2',
         name: 'Елена Петрова',
         email: 'petrova@student.edu',
         enrolledCourses: ['1', '2'],
+        photoUrl: 'https://i.pravatar.cc/150?img=15',
       ),
       Student(
         id: '3',
         name: 'Дмитрий Сидоров',
         email: 'sidorov@student.edu',
         enrolledCourses: ['3'],
+        photoUrl: null,
       ),
       Student(
         id: '4',
         name: 'Ольга Гусева',
         email: 'guseva@student.edu',
         enrolledCourses: ['2', '3'],
+        photoUrl: 'https://i.pravatar.cc/150?img=48',
       ),
     ];
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import '../models/student.dart';
 
 class StudentCard extends StatelessWidget {
@@ -32,12 +33,39 @@ class StudentCard extends StatelessWidget {
         ),
         child: ListTile(
           contentPadding: const EdgeInsets.all(16),
-          leading: CircleAvatar(
-            backgroundColor: Colors.blue[700],
-            child: Text(
-              student.name.substring(0, 1).toUpperCase(),
-              style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-            ),
+          leading: SizedBox(
+            width: 40,
+            height: 40,
+            child: (student.photoUrl != null && student.photoUrl!.isNotEmpty)
+                ? ClipOval(
+                    child: CachedNetworkImage(
+                      imageUrl: student.photoUrl!,
+                      width: 40,
+                      height: 40,
+                      fit: BoxFit.cover,
+                      placeholder: (context, url) => CircleAvatar(
+                        backgroundColor: Colors.blue[700],
+                        child: Text(
+                          student.name.substring(0, 1).toUpperCase(),
+                          style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      errorWidget: (context, url, error) => CircleAvatar(
+                        backgroundColor: Colors.blue[700],
+                        child: Text(
+                          student.name.substring(0, 1).toUpperCase(),
+                          style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ),
+                  )
+                : CircleAvatar(
+                    backgroundColor: Colors.blue[700],
+                    child: Text(
+                      student.name.substring(0, 1).toUpperCase(),
+                      style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                    ),
+                  ),
           ),
           title: Text(
             student.name,
