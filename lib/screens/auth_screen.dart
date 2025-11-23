@@ -22,9 +22,7 @@ class _AuthorizationScreenState extends State<AuthorizationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Авторизация'),
-      ),
+      appBar: AppBar(title: const Text('Авторизация')),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Center(
@@ -37,16 +35,20 @@ class _AuthorizationScreenState extends State<AuthorizationScreen> {
                 children: [
                   TextFormField(
                     controller: _emailController,
-                    decoration: const InputDecoration(labelText: 'Электронная почта'),
+                    decoration: const InputDecoration(
+                      labelText: 'Электронная почта',
+                    ),
                     keyboardType: TextInputType.emailAddress,
-                    validator: (v) => (v == null || v.isEmpty) ? 'Введите почту' : null,
+                    validator: (v) =>
+                        (v == null || v.isEmpty) ? 'Введите почту' : null,
                   ),
                   const SizedBox(height: 12),
                   TextFormField(
                     controller: _passwordController,
                     decoration: const InputDecoration(labelText: 'Пароль'),
                     obscureText: true,
-                    validator: (v) => (v == null || v.isEmpty) ? 'Введите пароль' : null,
+                    validator: (v) =>
+                        (v == null || v.isEmpty) ? 'Введите пароль' : null,
                   ),
                   const SizedBox(height: 20),
                   SizedBox(

@@ -6,6 +6,7 @@ import '../widgets/widgets.dart';
 
 class StudentsScreen extends StatefulWidget {
   final DataService dataService;
+
   const StudentsScreen({super.key, required this.dataService});
 
   @override
@@ -41,7 +42,8 @@ class _StudentsScreenState extends State<StudentsScreen> {
           ),
           TextButton(
             onPressed: () {
-              if (nameController.text.isNotEmpty && emailController.text.isNotEmpty) {
+              if (nameController.text.isNotEmpty &&
+                  emailController.text.isNotEmpty) {
                 final newStudent = Student(
                   id: DateTime.now().millisecondsSinceEpoch.toString(),
                   name: nameController.text,
@@ -89,7 +91,8 @@ class _StudentsScreenState extends State<StudentsScreen> {
           ),
           TextButton(
             onPressed: () {
-              if (nameController.text.isNotEmpty && emailController.text.isNotEmpty) {
+              if (nameController.text.isNotEmpty &&
+                  emailController.text.isNotEmpty) {
                 final updatedStudent = Student(
                   id: student.id,
                   name: nameController.text,
@@ -137,7 +140,16 @@ class _StudentsScreenState extends State<StudentsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Студенты'), actions: [IconButton(icon: const Icon(Icons.logout), onPressed: () => context.go('/login'), tooltip: 'Выйти')]),
+      appBar: AppBar(
+        title: const Text('Студенты'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.logout),
+            onPressed: () => context.go('/login'),
+            tooltip: 'Выйти',
+          ),
+        ],
+      ),
       body: ListView.builder(
         padding: const EdgeInsets.all(16),
         itemCount: widget.dataService.students.length,

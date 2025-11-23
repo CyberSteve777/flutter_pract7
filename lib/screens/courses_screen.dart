@@ -6,6 +6,7 @@ import '../widgets/widgets.dart';
 
 class CoursesScreen extends StatefulWidget {
   final DataService dataService;
+
   const CoursesScreen({super.key, required this.dataService});
 
   @override
@@ -13,7 +14,6 @@ class CoursesScreen extends StatefulWidget {
 }
 
 class _CoursesScreenState extends State<CoursesScreen> {
-
   void _addCourse() {
     final nameController = TextEditingController();
     final codeController = TextEditingController();
@@ -144,7 +144,16 @@ class _CoursesScreenState extends State<CoursesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Курсы'), actions: [IconButton(icon: const Icon(Icons.logout), onPressed: () => context.go('/login'), tooltip: 'Выйти')]),
+      appBar: AppBar(
+        title: const Text('Курсы'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.logout),
+            onPressed: () => context.go('/login'),
+            tooltip: 'Выйти',
+          ),
+        ],
+      ),
       body: ListView.builder(
         padding: const EdgeInsets.all(16),
         itemCount: widget.dataService.courses.length,

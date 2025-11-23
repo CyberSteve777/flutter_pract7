@@ -5,6 +5,7 @@ import '../utils/ru_plural.dart';
 
 class HomeScreen extends StatelessWidget {
   final DataService dataService;
+
   const HomeScreen({super.key, required this.dataService});
 
   @override
@@ -25,18 +26,16 @@ class HomeScreen extends StatelessWidget {
   }
 
   Widget _buildMenuCard(
-      BuildContext context,
-      String title,
-      IconData icon,
-      Color color,
-      VoidCallback onTap,
-      String subtitle,
-      ) {
+    BuildContext context,
+    String title,
+    IconData icon,
+    Color color,
+    VoidCallback onTap,
+    String subtitle,
+  ) {
     return Card(
       elevation: 4,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: InkWell(
         onTap: onTap,
         borderRadius: BorderRadius.circular(12),
@@ -58,10 +57,7 @@ class HomeScreen extends StatelessWidget {
               const SizedBox(height: 4),
               Text(
                 subtitle,
-                style: const TextStyle(
-                  fontSize: 12,
-                  color: Colors.grey,
-                ),
+                style: const TextStyle(fontSize: 12, color: Colors.grey),
               ),
             ],
           ),
@@ -84,7 +80,12 @@ class HomeScreen extends StatelessWidget {
             Icons.people,
             Colors.blue,
             () => context.push('/students'),
-            formatCount(dataService.students.length, 'студент', 'студента', 'студентов'),
+            formatCount(
+              dataService.students.length,
+              'студент',
+              'студента',
+              'студентов',
+            ),
           ),
           _buildMenuCard(
             context,
@@ -100,7 +101,12 @@ class HomeScreen extends StatelessWidget {
             Icons.person,
             Colors.orange,
             () => context.push('/teachers'),
-            formatCount(dataService.teachers.length, 'преподаватель', 'преподавателя', 'преподавателей'),
+            formatCount(
+              dataService.teachers.length,
+              'преподаватель',
+              'преподавателя',
+              'преподавателей',
+            ),
           ),
           _buildMenuCard(
             context,
@@ -108,7 +114,12 @@ class HomeScreen extends StatelessWidget {
             Icons.grade,
             Colors.purple,
             () => context.push('/grades'),
-            formatCount(dataService.grades.length, 'оценка', 'оценки', 'оценок'),
+            formatCount(
+              dataService.grades.length,
+              'оценка',
+              'оценки',
+              'оценок',
+            ),
           ),
         ],
       ),

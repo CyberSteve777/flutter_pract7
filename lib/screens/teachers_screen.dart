@@ -6,6 +6,7 @@ import '../widgets/widgets.dart';
 
 class TeachersScreen extends StatefulWidget {
   final DataService dataService;
+
   const TeachersScreen({super.key, required this.dataService});
 
   @override
@@ -56,7 +57,8 @@ class _TeachersScreenState extends State<TeachersScreen> {
           ),
           TextButton(
             onPressed: () {
-              if (nameController.text.isNotEmpty && emailController.text.isNotEmpty) {
+              if (nameController.text.isNotEmpty &&
+                  emailController.text.isNotEmpty) {
                 final newTeacher = Teacher(
                   id: DateTime.now().millisecondsSinceEpoch.toString(),
                   name: nameController.text,
@@ -82,7 +84,9 @@ class _TeachersScreenState extends State<TeachersScreen> {
   void _editTeacher(Teacher teacher) {
     final nameController = TextEditingController(text: teacher.name);
     final emailController = TextEditingController(text: teacher.email);
-    final departmentController = TextEditingController(text: teacher.department);
+    final departmentController = TextEditingController(
+      text: teacher.department,
+    );
     final positionController = TextEditingController(text: teacher.position);
     final phoneController = TextEditingController(text: teacher.phoneNumber);
 
@@ -122,7 +126,8 @@ class _TeachersScreenState extends State<TeachersScreen> {
           ),
           TextButton(
             onPressed: () {
-              if (nameController.text.isNotEmpty && emailController.text.isNotEmpty) {
+              if (nameController.text.isNotEmpty &&
+                  emailController.text.isNotEmpty) {
                 final updatedTeacher = Teacher(
                   id: teacher.id,
                   name: nameController.text,
@@ -173,7 +178,16 @@ class _TeachersScreenState extends State<TeachersScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Преподаватели'), actions: [IconButton(icon: const Icon(Icons.logout), onPressed: () => context.go('/login'), tooltip: 'Выйти')]),
+      appBar: AppBar(
+        title: const Text('Преподаватели'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.logout),
+            onPressed: () => context.go('/login'),
+            tooltip: 'Выйти',
+          ),
+        ],
+      ),
       body: ListView.builder(
         padding: const EdgeInsets.all(16),
         itemCount: widget.dataService.teachers.length,

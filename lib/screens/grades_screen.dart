@@ -6,6 +6,7 @@ import '../widgets/widgets.dart';
 
 class GradesScreen extends StatefulWidget {
   final DataService dataService;
+
   const GradesScreen({super.key, required this.dataService});
 
   @override
@@ -71,7 +72,9 @@ class _GradesScreenState extends State<GradesScreen> {
             TextButton(
               onPressed: () {
                 final grade = double.tryParse(gradeController.text);
-                if (selectedStudentId.isNotEmpty && selectedCourseId.isNotEmpty && grade != null) {
+                if (selectedStudentId.isNotEmpty &&
+                    selectedCourseId.isNotEmpty &&
+                    grade != null) {
                   final newGrade = Grade(
                     id: DateTime.now().millisecondsSinceEpoch.toString(),
                     studentId: selectedStudentId,
@@ -96,7 +99,9 @@ class _GradesScreenState extends State<GradesScreen> {
 
   void _editGrade(Grade grade) {
     final gradeController = TextEditingController(text: grade.grade.toString());
-    final commentsController = TextEditingController(text: grade.comments ?? '');
+    final commentsController = TextEditingController(
+      text: grade.comments ?? '',
+    );
 
     showDialog(
       context: context,
@@ -175,19 +180,39 @@ class _GradesScreenState extends State<GradesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Оценки'), actions: [IconButton(icon: const Icon(Icons.logout), onPressed: () => context.go('/login'), tooltip: 'Выйти')]),
+      appBar: AppBar(
+        title: const Text('Оценки'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.logout),
+            onPressed: () => context.go('/login'),
+            tooltip: 'Выйти',
+          ),
+        ],
+      ),
       body: ListView.builder(
         padding: const EdgeInsets.all(16),
         itemCount: widget.dataService.grades.length,
         itemBuilder: (context, index) {
           final grade = widget.dataService.grades[index];
           final student = widget.dataService.students.firstWhere(
-                (s) => s.id == grade.studentId,
-            orElse: () => Student(id: '', name: 'Неизвестно', email: '', enrolledCourses: const []),
+            (s) => s.id == grade.studentId,
+            orElse: () => Student(
+              id: '',
+              name: 'Неизвестно',
+              email: '',
+              enrolledCourses: const [],
+            ),
           );
           final course = widget.dataService.courses.firstWhere(
-                (c) => c.id == grade.courseId,
-            orElse: () => Course(id: '', name: 'Неизвестно', code: '', credits: 0, teacherId: ''),
+            (c) => c.id == grade.courseId,
+            orElse: () => Course(
+              id: '',
+              name: 'Неизвестно',
+              code: '',
+              credits: 0,
+              teacherId: '',
+            ),
           );
           return Padding(
             padding: const EdgeInsets.only(bottom: 8),
