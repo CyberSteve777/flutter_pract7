@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../models/models.dart';
 import '../services/data_service.dart';
 import '../widgets/widgets.dart';
@@ -47,7 +48,7 @@ class _CoursesScreenState extends State<CoursesScreen> {
         ),
         actions: [
           TextButton(
-            onPressed: () => Navigator.pop(context),
+            onPressed: () => context.pop(),
             child: const Text('Отмена'),
           ),
           TextButton(
@@ -64,7 +65,7 @@ class _CoursesScreenState extends State<CoursesScreen> {
                 setState(() {
                   widget.dataService.addCourse(newCourse);
                 });
-                Navigator.pop(context);
+                context.pop();
               }
             },
             child: const Text('Добавить'),
@@ -93,7 +94,7 @@ class _CoursesScreenState extends State<CoursesScreen> {
         ),
         actions: [
           TextButton(
-            onPressed: () => Navigator.pop(context),
+            onPressed: () => context.pop(),
             child: const Text('Отмена'),
           ),
           TextButton(
@@ -105,7 +106,7 @@ class _CoursesScreenState extends State<CoursesScreen> {
                     studentIdController.text,
                   );
                 });
-                Navigator.pop(context);
+                context.pop();
               }
             },
             child: const Text('Записать'),
@@ -123,7 +124,7 @@ class _CoursesScreenState extends State<CoursesScreen> {
         content: Text('Вы уверены, что хотите удалить ${course.name}?'),
         actions: [
           TextButton(
-            onPressed: () => Navigator.pop(context),
+            onPressed: () => context.pop(),
             child: const Text('Отмена'),
           ),
           TextButton(
@@ -131,7 +132,7 @@ class _CoursesScreenState extends State<CoursesScreen> {
               setState(() {
                 widget.dataService.deleteCourse(course.id);
               });
-              Navigator.pop(context);
+              context.pop();
             },
             child: const Text('Удалить'),
           ),
@@ -143,7 +144,7 @@ class _CoursesScreenState extends State<CoursesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Курсы')),
+      appBar: AppBar(title: const Text('Курсы'), actions: [IconButton(icon: const Icon(Icons.logout), onPressed: () => context.go('/login'), tooltip: 'Выйти')]),
       body: ListView.builder(
         padding: const EdgeInsets.all(16),
         itemCount: widget.dataService.courses.length,
@@ -224,7 +225,7 @@ class _CoursesContentState extends State<CoursesContent> {
         ),
         actions: [
           TextButton(
-            onPressed: () => Navigator.pop(context),
+            onPressed: () => context.pop(),
             child: const Text('Отмена'),
           ),
           TextButton(
@@ -241,7 +242,7 @@ class _CoursesContentState extends State<CoursesContent> {
                 setState(() {
                   widget.dataService.addCourse(newCourse);
                 });
-                Navigator.pop(context);
+                context.pop();
               }
             },
             child: const Text('Добавить'),
@@ -270,7 +271,7 @@ class _CoursesContentState extends State<CoursesContent> {
         ),
         actions: [
           TextButton(
-            onPressed: () => Navigator.pop(context),
+            onPressed: () => context.pop(),
             child: const Text('Отмена'),
           ),
           TextButton(
@@ -282,7 +283,7 @@ class _CoursesContentState extends State<CoursesContent> {
                     studentIdController.text,
                   );
                 });
-                Navigator.pop(context);
+                context.pop();
               }
             },
             child: const Text('Записать'),
@@ -300,7 +301,7 @@ class _CoursesContentState extends State<CoursesContent> {
         content: Text('Вы уверены, что хотите удалить ${course.name}?'),
         actions: [
           TextButton(
-            onPressed: () => Navigator.pop(context),
+            onPressed: () => context.pop(),
             child: const Text('Отмена'),
           ),
           TextButton(
@@ -308,7 +309,7 @@ class _CoursesContentState extends State<CoursesContent> {
               setState(() {
                 widget.dataService.deleteCourse(course.id);
               });
-              Navigator.pop(context);
+              context.pop();
             },
             child: const Text('Удалить'),
           ),

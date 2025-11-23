@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../models/models.dart';
 import '../services/data_service.dart';
 import '../widgets/widgets.dart';
@@ -35,7 +36,7 @@ class _StudentsScreenState extends State<StudentsScreen> {
         ),
         actions: [
           TextButton(
-            onPressed: () => Navigator.pop(context),
+            onPressed: () => context.pop(),
             child: const Text('Отмена'),
           ),
           TextButton(
@@ -50,7 +51,7 @@ class _StudentsScreenState extends State<StudentsScreen> {
                 setState(() {
                   widget.dataService.addStudent(newStudent);
                 });
-                Navigator.pop(context);
+                context.pop();
               }
             },
             child: const Text('Добавить'),
@@ -83,7 +84,7 @@ class _StudentsScreenState extends State<StudentsScreen> {
         ),
         actions: [
           TextButton(
-            onPressed: () => Navigator.pop(context),
+            onPressed: () => context.pop(),
             child: const Text('Отмена'),
           ),
           TextButton(
@@ -98,7 +99,7 @@ class _StudentsScreenState extends State<StudentsScreen> {
                 setState(() {
                   widget.dataService.updateStudent(updatedStudent);
                 });
-                Navigator.pop(context);
+                context.pop();
               }
             },
             child: const Text('Сохранить'),
@@ -116,7 +117,7 @@ class _StudentsScreenState extends State<StudentsScreen> {
         content: Text('Вы уверены, что хотите удалить ${student.name}?'),
         actions: [
           TextButton(
-            onPressed: () => Navigator.pop(context),
+            onPressed: () => context.pop(),
             child: const Text('Отмена'),
           ),
           TextButton(
@@ -124,7 +125,7 @@ class _StudentsScreenState extends State<StudentsScreen> {
               setState(() {
                 widget.dataService.deleteStudent(student.id);
               });
-              Navigator.pop(context);
+              context.pop();
             },
             child: const Text('Удалить'),
           ),
@@ -136,7 +137,7 @@ class _StudentsScreenState extends State<StudentsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Студенты')),
+      appBar: AppBar(title: const Text('Студенты'), actions: [IconButton(icon: const Icon(Icons.logout), onPressed: () => context.go('/login'), tooltip: 'Выйти')]),
       body: ListView.builder(
         padding: const EdgeInsets.all(16),
         itemCount: widget.dataService.students.length,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../models/models.dart';
 import '../services/data_service.dart';
 import '../widgets/widgets.dart';
@@ -64,7 +65,7 @@ class _GradesScreenState extends State<GradesScreen> {
           ),
           actions: [
             TextButton(
-              onPressed: () => Navigator.pop(context),
+              onPressed: () => context.pop(),
               child: const Text('Отмена'),
             ),
             TextButton(
@@ -82,7 +83,7 @@ class _GradesScreenState extends State<GradesScreen> {
                   this.setState(() {
                     widget.dataService.addGrade(newGrade);
                   });
-                  Navigator.pop(context);
+                  context.pop();
                 }
               },
               child: const Text('Добавить'),
@@ -118,7 +119,7 @@ class _GradesScreenState extends State<GradesScreen> {
         ),
         actions: [
           TextButton(
-            onPressed: () => Navigator.pop(context),
+            onPressed: () => context.pop(),
             child: const Text('Отмена'),
           ),
           TextButton(
@@ -136,7 +137,7 @@ class _GradesScreenState extends State<GradesScreen> {
                 setState(() {
                   widget.dataService.updateGrade(updatedGrade);
                 });
-                Navigator.pop(context);
+                context.pop();
               }
             },
             child: const Text('Сохранить'),
@@ -154,7 +155,7 @@ class _GradesScreenState extends State<GradesScreen> {
         content: const Text('Вы уверены, что хотите удалить эту оценку?'),
         actions: [
           TextButton(
-            onPressed: () => Navigator.pop(context),
+            onPressed: () => context.pop(),
             child: const Text('Отмена'),
           ),
           TextButton(
@@ -162,7 +163,7 @@ class _GradesScreenState extends State<GradesScreen> {
               setState(() {
                 widget.dataService.deleteGrade(grade.id);
               });
-              Navigator.pop(context);
+              context.pop();
             },
             child: const Text('Удалить'),
           ),
@@ -174,7 +175,7 @@ class _GradesScreenState extends State<GradesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Оценки')),
+      appBar: AppBar(title: const Text('Оценки'), actions: [IconButton(icon: const Icon(Icons.logout), onPressed: () => context.go('/login'), tooltip: 'Выйти')]),
       body: ListView.builder(
         padding: const EdgeInsets.all(16),
         itemCount: widget.dataService.grades.length,

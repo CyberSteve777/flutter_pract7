@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../models/models.dart';
 import '../services/data_service.dart';
 import '../widgets/widgets.dart';
@@ -50,7 +51,7 @@ class _TeachersScreenState extends State<TeachersScreen> {
         ),
         actions: [
           TextButton(
-            onPressed: () => Navigator.pop(context),
+            onPressed: () => context.pop(),
             child: const Text('Отмена'),
           ),
           TextButton(
@@ -68,7 +69,7 @@ class _TeachersScreenState extends State<TeachersScreen> {
                 setState(() {
                   widget.dataService.addTeacher(newTeacher);
                 });
-                Navigator.pop(context);
+                context.pop();
               }
             },
             child: const Text('Добавить'),
@@ -116,7 +117,7 @@ class _TeachersScreenState extends State<TeachersScreen> {
         ),
         actions: [
           TextButton(
-            onPressed: () => Navigator.pop(context),
+            onPressed: () => context.pop(),
             child: const Text('Отмена'),
           ),
           TextButton(
@@ -134,7 +135,7 @@ class _TeachersScreenState extends State<TeachersScreen> {
                 setState(() {
                   widget.dataService.updateTeacher(updatedTeacher);
                 });
-                Navigator.pop(context);
+                context.pop();
               }
             },
             child: const Text('Сохранить'),
@@ -152,7 +153,7 @@ class _TeachersScreenState extends State<TeachersScreen> {
         content: Text('Вы уверены, что хотите удалить ${teacher.name}?'),
         actions: [
           TextButton(
-            onPressed: () => Navigator.pop(context),
+            onPressed: () => context.pop(),
             child: const Text('Отмена'),
           ),
           TextButton(
@@ -160,7 +161,7 @@ class _TeachersScreenState extends State<TeachersScreen> {
               setState(() {
                 widget.dataService.deleteTeacher(teacher.id);
               });
-              Navigator.pop(context);
+              context.pop();
             },
             child: const Text('Удалить'),
           ),
@@ -172,7 +173,7 @@ class _TeachersScreenState extends State<TeachersScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Преподаватели')),
+      appBar: AppBar(title: const Text('Преподаватели'), actions: [IconButton(icon: const Icon(Icons.logout), onPressed: () => context.go('/login'), tooltip: 'Выйти')]),
       body: ListView.builder(
         padding: const EdgeInsets.all(16),
         itemCount: widget.dataService.teachers.length,
