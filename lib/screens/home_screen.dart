@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'auth_screen.dart';
 import '../services/data_service.dart';
 import '../utils/ru_plural.dart';
 import 'students_screen.dart';
@@ -15,6 +16,18 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Образовательная система'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.logout),
+            tooltip: 'Выйти',
+            onPressed: () {
+              Navigator.of(context).pushAndRemoveUntil(
+                MaterialPageRoute(builder: (_) => const AuthorizationScreen()),
+                (route) => false,
+              );
+            },
+          ),
+        ],
       ),
       body: _buildDashboard(context, dataService),
     );
