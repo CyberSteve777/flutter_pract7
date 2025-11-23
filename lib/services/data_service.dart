@@ -25,7 +25,7 @@ class DataService {
         position: 'Профессор',
         phoneNumber: '+7-999-123-45-67',
         subjects: ['Математический анализ', 'Линейная алгебра'],
-        photoUrl: 'https://i.pravatar.cc/150?img=12',
+        photoUrl: 'https://i.pravatar.cc/150?img=50',
       ),
       Teacher(
         id: '2',
@@ -55,14 +55,14 @@ class DataService {
         name: 'Александр Иванов',
         email: 'ivanov@student.edu',
         enrolledCourses: ['1', '2'],
-        photoUrl: 'https://i.pravatar.cc/150?img=5',
+        photoUrl: 'https://i.pravatar.cc/150?img=15',
       ),
       Student(
         id: '2',
         name: 'Елена Петрова',
         email: 'petrova@student.edu',
         enrolledCourses: ['1', '2'],
-        photoUrl: 'https://i.pravatar.cc/150?img=15',
+        photoUrl: 'https://i.pravatar.cc/150?img=5',
       ),
       Student(
         id: '3',
@@ -217,7 +217,7 @@ class DataService {
   double calculateGPA(String studentId) {
     final studentGrades = _grades.where((g) => g.studentId == studentId).toList();
     if (studentGrades.isEmpty) return 0.0;
-    
+
     double total = 0.0;
     for (var grade in studentGrades) {
       total += _gradeToGPA(grade.grade);
